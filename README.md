@@ -30,4 +30,11 @@ npx hardhat flatten contracts/YourContract.sol > FlattenContract.sol
 npx hardhat verify --network YOUR_NETWORK YOUR_CONTRACT_ADDRESS
 ```
 
+## UI
+```bash
+# Replace contractAddress and contractAbi name in index.js
+
+# Copy and paste generated json file from artifacts/contracts into frontend folder
+
+# Right click index.html and select Open with Live Server
 ```
