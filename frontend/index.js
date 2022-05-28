@@ -168,30 +168,33 @@ const getChainId = async () => {
 // Connect to the contract
 const connectContract = async (contractAbi, contractAddress) => {
   connected = false;
-
-  let data = "";
+  
   await getContractJson(contractAbi).then(result => {
-    data = result;
+    const data = result;
+
+    const contractABI = data.abi;
+    contract = new web3.eth.Contract(contractABI, contractAddress);
+
+    if (contract) {
+      getContractInfo(contract);
+    }
   }).catch(() => {
     printResult(`json not found`);
   })
-
-  const contractABI = data.abi;
-  contract = new web3.eth.Contract(contractABI, contractAddress);
-
-  if (contract) {
-    contractName = await contract.methods.name().call();
-    document.getElementById("contract-name").innerHTML = "Contract Name: " + contractName;
-
-    tokenSymbol = await contract.methods.symbol().call();
-    document.getElementById("token-symbol").innerHTML = "Token Symbol: " + tokenSymbol;
-
-    tokenDecimal = await contract.methods.decimals().call();
-    document.getElementById("token-decimal").innerHTML = "Token Decimals: " + tokenDecimal;
-
-    connected = true;
-  }
 };
+
+const getContractInfo = async (contract) => {
+  contractName = await contract.methods.name().call();
+  document.getElementById("contract-name").innerHTML = "Contract Name: " + contractName;
+
+  tokenSymbol = await contract.methods.symbol().call();
+  document.getElementById("token-symbol").innerHTML = "Token Symbol: " + tokenSymbol;
+
+  tokenDecimal = await contract.methods.decimals().call();
+  document.getElementById("token-decimal").innerHTML = "Token Decimals: " + tokenDecimal;
+
+  connected = true;
+}
 
 // Example of a web3 method
 const getBalance = async (address) => {
