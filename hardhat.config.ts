@@ -58,10 +58,10 @@ const config: HardhatUserConfig = {
             url: "http://127.0.0.1:7545",
             from: process.env.WALLET_LOCAL,
         },
-        // rinkeby: {
-        //     url: `https://rinkeby.infura.io/v3/${process.env.INFURA_API_KEY}`,
-        //     accounts: [`0x${process.env.WALLET_UAT_PK}`]
-        // },
+        rinkeby: {
+            url: `https://rinkeby.infura.io/v3/${process.env.INFURA_API_KEY}`,
+            accounts: [`0x${process.env.WALLET_UAT_PK}`]
+        },
         bsctest: {
             url: `https://data-seed-prebsc-1-s1.binance.org:8545`,
             accounts: [`0x${process.env.WALLET_UAT_PK}`],
@@ -79,8 +79,8 @@ const config: HardhatUserConfig = {
         // },
     },
     etherscan: {
-        // apiKey: process.env.ETHERSCAN_API_KEY
-        apiKey: process.env.BSCSCAN_API_KEY
+        apiKey: process.env.ETHERSCAN_API_KEY
+        // apiKey: process.env.BSCSCAN_API_KEY
     },
     gasReporter: {
         enabled: process.env.REPORT_GAS === "Y",

@@ -9,11 +9,11 @@
   "scripts": {
     "hardhat-clear-compiled-contracts": "powershell if(test-path './cache') {remove-item './cache' -force -recurse} && powershell if(test-path './artifacts') {remove-item './artifacts' -force -recurse} && powershell if(test-path './typechain-types') {remove-item './typechain-types' -force -recurse}",
     "hardhat-compile-contracts": "npx hardhat clean && npx hardhat compile",
-    "hardhat-deploy-contracts": "npx hardhat --network bsctest run scripts/deploySimpleToken.ts",
+    "hardhat-deploy-contracts": "npx hardhat --network rinkeby run scripts/deploySimpleUUPSToken.ts",
     "hardhat-test": "npx hardhat test test/test_contract_call.ts",
     "hardhat-compile-test": "npx hardhat compile && npx hardhat test",
     "hardhat-flatten": "npx hardhat flatten contracts/SimpleToken.sol > flatten/SimpleToken_Flatten.sol",
-    "hardhat-verify": "npx hardhat verify --network bsctest --contract contracts/SimpleToken.sol:SimpleToken 0xA1c1a445810d982C20270912c70B35D19EcD65B9",
+    "hardhat-verify": "npx hardhat verify --network rinkeby --contract contracts/Token721.sol:Token721 0x305cf2a95501CbfBFe7b603273352BF02D67b568 prod.com/ test.com/ ",
     "hardhat-check-size": "npx hardhat size-contracts"
   },
   "author": "",
@@ -24,7 +24,7 @@
     "@nomiclabs/hardhat-etherscan": "^2.1.8",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "@openzeppelin/contracts": "^4.4.1",
-    "@openzeppelin/contracts-upgradeable": "^4.4.1",
+    "@openzeppelin/contracts-upgradeable": "^4.6",
     "@openzeppelin/hardhat-upgrades": "^1.12.0",
     "@openzeppelin/truffle-upgrades": "^1.11.0",
     "@truffle/hdwallet-provider": "^2.0.0",
